@@ -26,7 +26,6 @@ jobs:
         sudo dpkg -i nancy.deb
         rm -rf vendor
         sudo apt install aha
-        sudo apt install html2text
         go list -json -m all | nancy sleuth | aha --title "Teste" > dependency-report.html
 
     - name: Backup HTML Report
