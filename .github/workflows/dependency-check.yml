@@ -32,12 +32,7 @@ jobs:
     - name: Nancy
       uses: sonatype-nexus-community/nancy-github-action@main
       with:
-        nancyCommand: sleuth -o csv > result.txt
- 
-    - name: Test
-      run: |
-        cat go.list
-        cat result.txt
+        nancyCommand: sleuth --loud > dependency-result.txt
       
 #    - name: Backup HTML Report
 #      if: "${{ always() }}"
