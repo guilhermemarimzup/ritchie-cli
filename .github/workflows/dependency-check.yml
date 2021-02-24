@@ -25,15 +25,21 @@ jobs:
         rm -rf vendor
         go list -json -m all > go.list
 
+#     - name: Generate Report
+#       if: "${{ always() }}"
+#       uses: sonatype-nexus-community/nancy-github-action@main
+#       with: 
+#         nancyCommand: sleuth --loud -o json "dependency-report.json"   
+
     - name: Generate Report
+      id: teste
       if: "${{ always() }}"
       uses: sonatype-nexus-community/nancy-github-action@main
       with: 
-        nancyCommand: sleuth --loud -o json "dependency-report.json"     
-    - name: Gen Txt
-      if: "${{ always() }}"
-      run: |
-        cat $GITHUB_ENV >> result.txt
+        nancyCommand: sleuth --loud
+
+    - run: echo 0 ${{ steps.teste.outputs.0 }}
+      shell: bash
         
     - name: Backup HTML Report
       if: "${{ always() }}"
