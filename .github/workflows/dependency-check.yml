@@ -27,7 +27,12 @@ jobs:
 
     - name: Dep
       run: |
-        curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
+        go get -d -u github.com/golang/dep
+        cd $(go env GOPATH)/src/github.com/golang/dep
+        DEP_LATEST=$(git describe --abbrev=0 --tags)
+        git checkout $DEP_LATEST
+        go install -ldflags="-X main.version=$DEP_LATEST" ./cmd/dep
+        git checkout master
         dep init
 
     - name: Nancy
