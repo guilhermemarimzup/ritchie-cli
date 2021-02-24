@@ -30,7 +30,9 @@ jobs:
       
     - name: Generate Report
       if: "${{ always() }}"
-      run: nancy sleuth --loud >> dependency-report.txt
+      uses: sonatype-nexus-community/nancy-github-action@main
+      with:
+        nancyCommand: sleuth --loud >> dependency-report.txt
     
     - name: Backup HTML Report
       if: "${{ always() }}"
