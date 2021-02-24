@@ -25,7 +25,7 @@ jobs:
         curl -fsSL https://github.com/sonatype-nexus-community/nancy/releases/download/v1.0.15/nancy_1.0.15_linux_amd64.deb -o nancy.deb
         sudo dpkg -i nancy.deb
         rm -rf vendor
-        go list -json -m all | nancy sleuth > dependency-report.txt
+        go list -json -m all | nancy sleuth > dependency-report.html
 
     - name: Backup HTML Report
       if: "${{ always() }}"
