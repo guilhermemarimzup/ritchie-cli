@@ -26,11 +26,11 @@ jobs:
         sudo dpkg -i nancy.deb
         rm -rf vendor
         go list -json -m all | nancy sleuth --loud > dependency-report.txt
-        text2html --paras --blockcode dependency-report
+        text2html --paras --blockcode dependency-report.txt
 
     - name: Backup HTML Report
       if: "${{ always() }}"
       uses: actions/upload-artifact@v2
       with:
         name: dependency-report
-        path: ./dependency-report.html
+        path: ./dependency-report.txt
