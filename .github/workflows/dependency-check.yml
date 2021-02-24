@@ -30,7 +30,7 @@ jobs:
       
     - name: Generate Report
       if: "${{ always() }}"
-      run: nancy sleuth --loud > dependency-report.txt
+      run: nancy sleuth --loud >> dependency-report.txt
     
     - name: Backup HTML Report
       if: "${{ always() }}"
