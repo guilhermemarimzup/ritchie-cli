@@ -25,12 +25,11 @@ jobs:
         curl -fsSL https://github.com/sonatype-nexus-community/nancy/releases/download/v1.0.15/nancy_1.0.15_linux_amd64.deb -o nancy.deb
         sudo dpkg -i nancy.deb
         rm -rf vendor
-        touch dependency-report.html
-        go list -json -m all | nancy sleuth > dependency-report.html
+        go list -json -m all | nancy sleuth -o csv > dependency-report.csv
 
     - name: Backup HTML Report
       if: "${{ always() }}"
       uses: actions/upload-artifact@v2
       with:
         name: dependency-report
-        path: ./dependency-report.html
+        path: ./dependency-report.csv
