@@ -25,14 +25,13 @@ jobs:
         curl -fsSL https://github.com/sonatype-nexus-community/nancy/releases/download/v1.0.15/nancy_1.0.15_linux_amd64.deb -o nancy.deb
         sudo dpkg -i nancy.deb
         rm -rf vendor
-        go list -json -m all | nancy sleuth --loud > dependency-report.txt
         sudo apt install aha
         sudo apt install html2text
-        cat dependency-report.txt | html2text | aha --black --title "Teste"> dependency-report1.html
+        go list -json -m all | nancy sleuth --loud | html2text | aha --black --title "Teste"> dependency-report.html
 
     - name: Backup HTML Report
       if: "${{ always() }}"
       uses: actions/upload-artifact@v2
       with:
         name: dependency-report
-        path: ./dependency-report1.html
+        path: ./dependency-report.html
