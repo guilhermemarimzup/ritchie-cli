@@ -27,13 +27,8 @@ jobs:
 
     - name: Nancy
       uses: sonatype-nexus-community/nancy-github-action@main
-      
-    - name: Generate Report
-      if: "${{ always() }}"
-      uses: sonatype-nexus-community/nancy-github-action@main
-      with: |
-        nancyCommand: sleuth --loud | echo result.txt
-        
+      with:
+        nancyCommand: sleuth --loud" > dependency-report.txt
     
     - name: Backup HTML Report
       if: "${{ always() }}"
