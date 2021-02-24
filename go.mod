@@ -3,7 +3,6 @@ module github.com/ZupIT/ritchie-cli
 go 1.14
 
 require (
-    code.gitea.io/gitea v1.9.0-dev
 	github.com/AlecAivazis/survey/v2 v2.0.7
 	github.com/PaesslerAG/jsonpath v0.1.1
 	github.com/denisbrodbeck/machineid v1.0.1
