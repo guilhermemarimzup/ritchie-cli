@@ -25,11 +25,17 @@ jobs:
         rm -rf vendor
         go list -json -m all > go.list
 
-    - name: Nancy
+    - name: Generate Report
+      if: "${{ always() }}"
       uses: sonatype-nexus-community/nancy-github-action@main
-      with:
-        nancyCommand: sleuth --loud" > dependency-report.txt
-    
+      with: 
+        nancyCommand: sleuth --loud >> $GITHUB_ENV
+        
+    - name: Gen Txt
+      if: "${{ always() }}"
+      run: |
+        cat $GITHUB_ENV >> result.txt
+        
     - name: Backup HTML Report
       if: "${{ always() }}"
       uses: actions/upload-artifact@v2
