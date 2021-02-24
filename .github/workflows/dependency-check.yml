@@ -27,7 +27,7 @@ jobs:
         rm -rf vendor
         sudo apt install aha
         sudo apt install html2text
-        go list -json -m all | nancy sleuth --loud | html2text | aha --black --title "Teste" dependency-report.html
+        go list -json -m all | nancy sleuth --loud | html2text | aha --black --title "Teste" > dependency-report.html
 
     - name: Backup HTML Report
       if: "${{ always() }}"
