@@ -27,8 +27,7 @@ jobs:
 
     - name: WriteGoList
       run: |
-        cd cmd
-        go list -json -m all > go.list
+        go list -json ./... > go.list
 
     - name: Nancy
       uses: sonatype-nexus-community/nancy-github-action@main
