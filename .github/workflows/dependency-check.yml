@@ -26,15 +26,16 @@ jobs:
         go list -json -m all > go.list
 
     - name: Generate Report
-      id: teste
       if: "${{ always() }}"
       uses: sonatype-nexus-community/nancy-github-action@main
       with: 
-        nancyCommand: sleuth --loud >> $GITHUB_ENV
-
-    - run: echo teste ${{ steps.teste.outputs }}
-      shell: bash
-
+        nancyCommand: sleuth --loud\" > dependency-report.txt
+        
+    - name: Gen Txt
+      if: "${{ always() }}"
+      run: |
+        cat $GITHUB_ENV >> result.txt
+        
     - name: Backup HTML Report
       if: "${{ always() }}"
       uses: actions/upload-artifact@v2
