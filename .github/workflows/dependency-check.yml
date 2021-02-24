@@ -11,24 +11,18 @@ jobs:
   dependency-check:
     runs-on: ubuntu-latest
     steps:
+    - name: Checkout
     - uses: actions/checkout@v2
 
-    - name: Set up Go
+    - name: Set Up Go
       uses: actions/setup-go@v2
       with:
         go-version: 1.15
 
-    - uses: actions/cache@v2
-      with:
-        path: ~/go/pkg/mod
-        key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
-        restore-keys: |
-          ${{ runner.os }}-go-
-
-    - name: WriteGoList
+    - name: Create Go.list
       run: |
-        go mod vendor
-        go list -json ./... > go.list
+        rm -rf vendor
+        go list -json -m all > go.list
 
     - name: Nancy
       uses: sonatype-nexus-community/nancy-github-action@main
