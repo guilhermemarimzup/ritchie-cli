@@ -29,8 +29,7 @@ jobs:
       if: "${{ always() }}"
       uses: sonatype-nexus-community/nancy-github-action@main
       with: 
-        nancyCommand: sleuth --loud\" > dependency-report.txt
-        
+        nancyCommand: sleuth --loud -o json "dependency-report.json"     
     - name: Gen Txt
       if: "${{ always() }}"
       run: |
@@ -41,5 +40,5 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: dependency-report
-        path: ./dependency-report.txt
+        path: ./dependency-report.json
 
