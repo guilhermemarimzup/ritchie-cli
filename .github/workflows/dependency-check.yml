@@ -27,13 +27,14 @@ jobs:
 
     - name: Nancy
       uses: sonatype-nexus-community/nancy-github-action@main
-      with:
-        nancyCommand: sleuth --loud
       
-#    - name: Backup HTML Report
-#      if: "${{ always() }}"
-#      uses: actions/upload-artifact@v2
-#      with:
-#        name: dependency-check-report
-#        path: ./target/dependency-check-report.html
+    - name: Generate Report
+      run: nancy sleuth --loud > dependency-report.txt
+    
+    - name: Backup HTML Report
+      if: "${{ always() }}"
+      uses: actions/upload-artifact@v2
+      with:
+        name: dependency-report
+        path: ./dependency-report.txt
 
