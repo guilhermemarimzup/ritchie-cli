@@ -26,7 +26,6 @@ jobs:
         sudo dpkg -i nancy.deb
         rm -rf vendor
         go list -json -m all | nancy sleuth --loud > dependency-report.txt
-        text2html --paras --blockcode dependency-report.txt
 
     - name: Backup HTML Report
       if: "${{ always() }}"
