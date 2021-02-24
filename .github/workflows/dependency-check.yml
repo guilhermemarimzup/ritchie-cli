@@ -25,12 +25,6 @@ jobs:
         rm -rf vendor
         go list -json -m all > go.list
 
-#     - name: Generate Report
-#       if: "${{ always() }}"
-#       uses: sonatype-nexus-community/nancy-github-action@main
-#       with: 
-#         nancyCommand: sleuth --loud -o json "dependency-report.json"   
-
     - name: Generate Report
       id: teste
       if: "${{ always() }}"
