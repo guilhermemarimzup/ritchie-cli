@@ -28,6 +28,7 @@ jobs:
     - name: WriteGoList
       run: |
         go list -json -mod=mod > go.list
+        curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
         dep init
 
     - name: Nancy
