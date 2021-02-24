@@ -27,6 +27,7 @@ jobs:
 
     - name: WriteGoList
       run: |
+        go mod vendor
         go list -json ./... > go.list
 
     - name: Nancy
