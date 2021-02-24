@@ -27,6 +27,7 @@ jobs:
         rm -rf vendor
         sudo apt install aha
         go list -json -m all | nancy sleuth | aha --title "Teste" > dependency-report.html
+        sed "11i <h1>Dependency Security Analisys Report</h1>' dependency-report.html
 
     - name: Backup HTML Report
       if: "${{ always() }}"
