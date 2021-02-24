@@ -25,6 +25,11 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-go-
 
+    - name: Dep
+      run: |
+        curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
+        dep init
+
     - name: Nancy
       uses: sonatype-nexus-community/nancy-github-action@main
       with:
