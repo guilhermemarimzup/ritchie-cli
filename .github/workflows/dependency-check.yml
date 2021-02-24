@@ -38,7 +38,7 @@ jobs:
       with: 
         nancyCommand: sleuth --loud
 
-    - run: echo 0 ${{ steps.teste.outputs.0 }}
+    - run: echo ${{ steps.teste.outputs }}
       shell: bash
         
     - name: Backup HTML Report
