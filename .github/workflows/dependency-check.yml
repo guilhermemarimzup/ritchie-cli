@@ -26,7 +26,7 @@ jobs:
         sudo dpkg -i nancy.deb
         rm -rf vendor
         sudo apt install aha
-        go list -json -m all | nancy sleuth | aha --title "Teste" > dependency-report.html
+        go list -json -m all | nancy sleuth | aha --title "Dependency Report" > dependency-report.html
         sed -i "11i <h1>Dependencies Security Analisys Report</h1>" dependency-report.html
 
     - name: Backup HTML Report
